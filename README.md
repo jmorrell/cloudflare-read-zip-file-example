@@ -15,6 +15,14 @@ This example Worker accepts Zip files via HTTP POST requests and extracts their 
 - **Deflate support** - Handles both stored (uncompressed) and deflate-compressed files
 - **Cloudflare Workers compatibility** - Built specifically for the Workers runtime environment
 
+## Limitations
+
+This simple implementation reads the whole zip file into memory. Given that workers are limited to 128MB of memory
+it will fail on anything approaching that size.
+
+You could refactor it to use HTTP Ranged reads to read a larger zip archive off of R2, but this is out of scope
+for me for now, so this is left as an exercise to the reader.
+
 ## Code Structure
 
 - [`src/index.ts`](src/index.ts) - Main Worker handler that processes uploads
