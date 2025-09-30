@@ -17,11 +17,17 @@ This example Worker accepts Zip files via HTTP POST requests and extracts their 
 
 ## Limitations
 
+### In-memory
+
 This simple implementation reads the whole zip file into memory. Given that workers are limited to 128MB of memory
 it will fail on anything approaching that size.
 
 You could refactor it to use HTTP Ranged reads to read a larger zip archive off of R2, but this is out of scope
 for me for now, so this is left as an exercise to the reader.
+
+### Compression methods
+
+This only support either uncompressed data or data compressed using the "Deflated" method.
 
 ## Code Structure
 
